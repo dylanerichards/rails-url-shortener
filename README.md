@@ -1,24 +1,17 @@
-# README
+# Rails URL Shortener
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple API for shortening URLs.
 
-Things you may want to cover:
+## Running the application
+1. Clone the repository
+2. `cd` into it and run the migrations (`bundle exec rake db:migrate`)
+3. Install the dependencies by running `bundle`
+4. Start the Rails server by running `rails server` in the project root
+5. Run the test suite by typing `rspec`
 
-* Ruby version
 
-* System dependencies
+## Endpoints
 
-* Configuration
+`POST /shorten`: This route can be passed a `long_url` and `slug` parameter. The endpoint returns a JSON object containing the long url and its shortened alternative. The shortened url, by default, is a base36 representation of the Url object's id in the database. If a unique slug is passed, then it will be used as the shortened link instead.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`GET /:short_path`: This route simply performs the redirects. Using the `short_path` parameter in the URL, we find the corresponding URL record in the database, and redirect to its `long_url`.
